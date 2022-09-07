@@ -961,7 +961,7 @@ import '../assets/css/flexstyles.scss';
             pageTitleElement.innerHTML = '';
         }
 
-        document.title = 'Jellyfin';
+        document.title = 'Lucasflix';
     }
 
     function setTitle (title) {
@@ -987,7 +987,7 @@ import '../assets/css/flexstyles.scss';
             pageTitleElement.innerText = html || '';
         }
 
-        document.title = title || 'Jellyfin';
+        document.title = title || 'Lucasflix';
     }
 
     function setTransparentMenu (transparent) {

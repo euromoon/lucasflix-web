@@ -47,6 +47,15 @@ const Home: FunctionComponent<IProps> = (props: IProps) => {
             name: globalize.translate('Home')
         }, {
             name: globalize.translate('Favorites')
+        }, {
+            name: globalize.translate('Requests'),
+            href: 'https://requests.lucasflix.com'
+        }, {
+            name: globalize.translate('Apoie'),
+            href: 'https://lucasflix.com/apoie'
+        }, {
+            name: globalize.translate('Telegram'),
+            href: 'https://t.me/+_evLgWoCCUkxZjkx'
         }];
     };
 
@@ -68,13 +77,14 @@ const Home: FunctionComponent<IProps> = (props: IProps) => {
 
             case 1:
                 depends = 'favorites';
+                break;
         }
 
         return import(/* webpackChunkName: "[request]" */ `../controllers/${depends}`).then(({ default: controllerFactory }) => {
             let controller = tabControllers[index];
 
             if (!controller) {
-                const tabContent = element.current?.querySelector(".tabContent[data-index='" + index + "']");
+                const tabContent = element.current?.querySelector(".tabContent[data-index='0']");
                 controller = new controllerFactory(tabContent, props);
                 tabControllers[index] = controller;
             }
@@ -97,6 +107,9 @@ const Home: FunctionComponent<IProps> = (props: IProps) => {
     }, [tabControllers]);
 
     const loadTab = useCallback((index: number, previousIndex: number | null) => {
+        if (getTabs()[index].name == 'Requests' || getTabs()[index].name == 'Apoie' || getTabs()[index].name == 'Telegram') {
+            return;
+        }
         getTabController(index).then((controller) => {
             const refresh = !controller.refreshed;
 
@@ -114,6 +127,9 @@ const Home: FunctionComponent<IProps> = (props: IProps) => {
     const onTabChange = useCallback((e: { detail: { selectedTabIndex: string; previousIndex: number | null }; }) => {
         const newIndex = parseInt(e.detail.selectedTabIndex);
         const previousIndex = e.detail.previousIndex;
+        if (getTabs()[newIndex].name == 'Requests' || getTabs()[newIndex].name == 'Apoie' || getTabs()[newIndex].name == 'Telegram') {
+            return;
+        }
 
         const previousTabController = previousIndex == null ? null : tabControllers[previousIndex];
         if (previousTabController && previousTabController.onPause) {

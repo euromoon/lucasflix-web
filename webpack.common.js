@@ -40,6 +40,7 @@ module.exports = {
             template: 'index.html',
             // Append file hashes to bundle urls for cache busting
             hash: true
+            // base: '/proxy/8080/'
         }),
         new CopyPlugin({
             patterns: [

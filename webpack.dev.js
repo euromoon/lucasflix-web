@@ -24,6 +24,7 @@ module.exports = merge(common, {
                 errors: true,
                 warnings: false
             }
-        }
+        },
+        allowedHosts: 'all'
     }
 });

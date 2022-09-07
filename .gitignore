@@ -11,6 +11,7 @@ config.json
 
 # log
 yarn-error.log
+pnpm-lock.yaml
 
 # vim
 *.sw?

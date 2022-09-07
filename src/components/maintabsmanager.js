@@ -78,6 +78,11 @@ import '../elements/emby-button/emby-button';
     }
 
     export function setTabs(view, selectedIndex, getTabsFn, getTabContainersFn, onBeforeTabChange, onTabChange, setSelectedIndex) {
+        console.log(getTabsFn()[selectedIndex].name);
+        if (getTabsFn()[selectedIndex].name == 'Requests' || getTabsFn()[selectedIndex].name == 'Apoie' || getTabsFn()[selectedIndex].name == 'Telegram') {
+            return;
+        }
+
         ensureElements();
 
         if (!view) {
@@ -119,7 +124,7 @@ import '../elements/emby-button/emby-button';
                 }
 
                 if (t.href) {
-                    tabHtml = '<a href="' + t.href + '" is="emby-linkbutton" class="' + tabClass + '" data-index="' + index + '"><div class="emby-button-foreground">' + t.name + '</div></a>';
+                    tabHtml = '<a href="' + t.href + '" target="_blank" is="emby-linkbutton" class="' + tabClass + '" data-index="' + 0 + '"><div class="emby-button-foreground">' + t.name + '</div></a>';
                 } else {
                     tabHtml = '<button type="button" is="emby-button" class="' + tabClass + '" data-index="' + index + '"><div class="emby-button-foreground">' + t.name + '</div></button>';
                 }
